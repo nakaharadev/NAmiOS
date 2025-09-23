@@ -116,6 +116,7 @@
 
 #include <kunit/test.h>
 
+
 static int kernel_init(void *);
 
 /*
