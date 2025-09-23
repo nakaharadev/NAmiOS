@@ -30,15 +30,13 @@ NAmiOS is a next-generation mobile operating system designed for maximum perform
 - [ ] Basic UI components
 
 ## 🏗️ Architecture Overview
-NAmiOS Application Layer (.nep apps)
-↓
-UI Framework (Native Components)
-↓
-Mobile Compositor (Wayland-based)
-↓
-Graphics HAL (DRM/KMS/OpenGL ES)
-↓
-Linux Kernel (ARM64 optimized)
+```mermaid
+graph TD;
+A["NAmiOS Application Layer (.nep apps)"] --> B
+B["UI Framework (Native Components)"] --> C
+C["Mobile Compositor (Wayland-based)"] --> D
+D["Graphics HAL (DRM/KMS/OpenGL ES)"] --> E["Linux Kernel (ARM64 optimized)"]
+```
 
 ## 🛠️ Building NAmiOS
 
@@ -100,10 +98,10 @@ We're building the future of mobile computing and welcome contributors! Here's h
 - Pick an issue from [Good First Issues](https://github.com/yourusername/namios/issues?q=is%253Aissue+is%253Aopen+label%253A%2522good+first+issue%2522)
 
 📚 Documentation
-- [Architecture Overview](https://docs/architecture.md) - Technical design decisions
-- [.nep Format Specification](https://docs/nep-format.md) - Application packaging details
-- [Building NAmiOS](https://docs/building.md) - Comprehensive build guide
-- [Developer Guide](https://docs/development.md) - Creating apps for NAmiOS
+- [Architecture Overview](https://docs/ARCH.md) - Technical design decisions
+- [.nep Format Specification](https://docs/NEP_FORMAT.md) - Application packaging details
+- [Building NAmiOS](https://docs/BUILD.md) - Comprehensive build guide
+- [Developer Guide](https://docs/DEV.md) - Creating apps for NAmiOS
 
 ## 🧪 Testing and Development
 ### QEMU Emulation
@@ -154,9 +152,9 @@ A: Initially ARM64 devices, with x86_64 support planned. We're starting with QEM
 A: We're in active development. Follow our roadmap for progress updates.
 
 ## 📞 Contact & Community
-- GitHub Issues: [Bug reports and feature requests](https://github.com/yourusername/namios/issues)
-- Discord/Slack: [Join the conversation](https://your-invite-link/)
-- Email: [developer@namios.org](https://mailto:developer@namios.org/)
+- GitHub Issues: [Bug reports and feature requests](https://github.com/nakaharadev/NAmiOS/issues)
+- Discord/Slack: [Join the conversation](#)
+- Email: [developer@namios.org](https://mailto:nami.dev@gmail.com/)
 - Twitter: [@NAmiOS_Project](https://twitter.com/NAmiOS_Project)
 
 ## 🌟 Acknowledgments
