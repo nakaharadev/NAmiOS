@@ -1,0 +1,7 @@
+menu "NAmiOS components"
+
+source "package/namios/namios-graphics-lib/Config.in"
+source "package/namios/namios-input-lib/Config.in"
+source "package/namios/namios-compositor/Config.in"
+
+endmenu

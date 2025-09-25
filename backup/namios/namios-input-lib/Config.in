@@ -1,0 +1,4 @@
+config BR2_PACKAGE_NAMIOS_INPUT_LIB
+	bool "namios-input-lib"
+	help
+	  NAmiOS Input Library - touch input handling

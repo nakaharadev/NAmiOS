@@ -1,0 +1,6 @@
+config BR2_PACKAGE_NAMIOS_COMPOSITOR
+	bool "namios-compositor"
+	depends on BR2_PACKAGE_NAMIOS_GRAPHICS_LIB
+	depends on BR2_PACKAGE_NAMIOS_INPUT_LIB
+	help
+	  NAmiOS Mobile Compositor - graphical shell for NAmiOS
