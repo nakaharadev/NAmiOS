@@ -4,22 +4,18 @@
 #
 ################################################################################
 
-SYSVINIT_VERSION = 3.14
+SYSVINIT_VERSION = 3.04
 SYSVINIT_SOURCE = sysvinit-$(SYSVINIT_VERSION).tar.xz
-SYSVINIT_SITE = https://github.com/slicer69/sysvinit/releases/download/$(SYSVINIT_VERSION)
+SYSVINIT_SITE = http://download.savannah.nongnu.org/releases/sysvinit
 SYSVINIT_LICENSE = GPL-2.0+
 SYSVINIT_LICENSE_FILES = COPYING
 SYSVINIT_CPE_ID_VALID = YES
 
-SYSVINIT_MAKE_OPTS = SYSROOT=$(STAGING_DIR) VERSION=$(SYSVINIT_VERSION)
+SYSVINIT_MAKE_OPTS = SYSROOT=$(STAGING_DIR)
 
 ifeq ($(BR2_PACKAGE_LIBSELINUX),y)
 SYSVINIT_DEPENDENCIES += libselinux
 SYSVINIT_MAKE_OPTS += WITH_SELINUX="yes"
-endif
-
-ifeq ($(BR2_PACKAGE_LIBXCRYPT),y)
-SYSVINIT_DEPENDENCIES += libxcrypt
 endif
 
 define SYSVINIT_BUILD_CMDS

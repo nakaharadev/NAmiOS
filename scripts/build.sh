@@ -29,7 +29,7 @@ cd ..
 # Сборка rootfs
 echo "=== Building rootfs ==="
 cd fs/buildroot
-make -j$(nproc)
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc)
 cd ../..
 
 echo "=== Build complete ==="

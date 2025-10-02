@@ -1,0 +1,2 @@
+make[1]: *** No rule to make target 'namios-compositor'.  Stop.
+make: *** [Makefile:82: _all] Error 2

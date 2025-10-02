@@ -1,0 +1,7 @@
+# package/namios-input-lib/Config.in
+config BR2_PACKAGE_NAMIOS_INPUT_LIB
+	bool "namios-input-lib"
+	select BR2_PACKAGE_LIBINPUT
+	select BR2_PACKAGE_LIBEVDEV
+	help
+	  NAmiOS input library for touch and keyboard events

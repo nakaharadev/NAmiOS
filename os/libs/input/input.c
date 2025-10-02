@@ -28,7 +28,6 @@ int input_init(void) {
         printf("X range: %d to %d\n", event_input_range.min_x, event_input_range.max_x);
     } else {
         perror("Failed to get X range");
-        // Устанавливаем дефолтные значения на случай ошибки
         event_input_range.min_x = 0;
         event_input_range.max_x = 8192;
     }

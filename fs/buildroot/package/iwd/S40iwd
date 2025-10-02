@@ -1,16 +1,16 @@
 #!/bin/sh
 
-DAEMON="iwd"
-PIDFILE="/var/run/$DAEMON.pid"
+DAEMON="/usr/libexec/iwd"
+PIDFILE="/var/run/iwd.pid"
 
 IWD_ARGS=""
 
-[ -r "/etc/default/$DAEMON" ] && . "/etc/default/$DAEMON"
+[ -r "/etc/default/iwd" ] && . "/etc/default/iwd"
 
 start() {
-	printf 'Starting %s: ' "$DAEMON"
+	printf "Starting iwd:"
 	mkdir -p /tmp/iwd/hotspot
-	start-stop-daemon -b -m -S -q -p "$PIDFILE" -x "/usr/libexec/$DAEMON" \
+	start-stop-daemon -b -m -S -q -p "$PIDFILE" -x "$DAEMON" \
 		-- $IWD_ARGS
 	status=$?
 	if [ "$status" -eq 0 ]; then
@@ -22,7 +22,7 @@ start() {
 }
 
 stop() {
-	printf 'Stopping %s: ' "$DAEMON"
+	printf "Stopping iwd:"
 	start-stop-daemon -K -q -p "$PIDFILE"
 	status=$?
 	if [ "$status" -eq 0 ]; then

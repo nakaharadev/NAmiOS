@@ -9,4 +9,4 @@ config BR2_PACKAGE_AUMIX
 	  automatically save and restore the mixer settings at shutdown
 	  and boot.
 
-	  https://sourceforge.net/projects/aumix/
+	  http://jpj.net/~trevor/aumix.html

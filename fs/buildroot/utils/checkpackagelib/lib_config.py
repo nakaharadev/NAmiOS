@@ -154,7 +154,6 @@ class CommentsMenusPackagesOrder(_CheckFunction):
 
 class HelpText(_CheckFunction):
     HELP_TEXT_FORMAT = re.compile(r"^\t  .{,62}$")
-    HELP_TEXT_FORMAT_1 = re.compile(r"^\t  \S.{,61}$")
     URL_ONLY = re.compile(r"^(http|https|git)://\S*$")
 
     def before(self):
@@ -171,18 +170,12 @@ class HelpText(_CheckFunction):
             return
         if text.strip() == "help":
             self.help_text = True
-            self.help_first_line = True
             return
 
         if not self.help_text:
             return
 
-        if self.help_first_line:
-            help_text_match = self.HELP_TEXT_FORMAT_1
-            self.help_first_line = False
-        else:
-            help_text_match = self.HELP_TEXT_FORMAT
-        if help_text_match.match(text.rstrip()):
+        if self.HELP_TEXT_FORMAT.match(text.rstrip()):
             return
         if self.URL_ONLY.match(text.strip()):
             return

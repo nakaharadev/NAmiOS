@@ -1,0 +1,6 @@
+# package/namios-graphics-lib/Config.in
+config BR2_PACKAGE_NAMIOS_GRAPHICS_LIB
+	bool "namios-graphics-lib"
+	select BR2_PACKAGE_LIBDRM
+	help
+	  NAmiOS graphics library for framebuffer and DRM operations

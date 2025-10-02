@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
-#include "../libs/graphics/graphics.h"
-#include "../libs/input/input.h"
+#include "../namios-graphics-lib-1.0/graphics.h"
+#include "../namios-input-lib-1.0/input.h"
 
 static int running = 1;
-static int touch_active = 0;  // Отслеживаем состояние касания
+static int touch_active = 0;
 static int last_x = -1, last_y = -1;
 
 void signal_handler(int sig) {
@@ -16,7 +16,6 @@ void normalize_touch_input(input_touch_event_range_t input_range, int w, int h, 
     int scaled_x = (*x - input_range.min_x) * w / (input_range.max_x - input_range.min_x);
     int scaled_y = (*y - input_range.min_y) * h / (input_range.max_y - input_range.min_y);
 
-    // Обеспечиваем, чтобы координаты не выходили за границы
     if (scaled_x < 0) scaled_x = 0;
     if (scaled_x >= w) scaled_x = w - 1;
     if (scaled_y < 0) scaled_y = 0;
@@ -55,7 +54,6 @@ int main() {
 
         while (input_poll_event(&touch)) {
             if (touch.type == TOUCH_DOWN) {
-                // Нормализуем координаты только для DOWN и MOVE событий
                 int normalized_x = touch.x;
                 int normalized_y = touch.y;
                 normalize_touch_input(
@@ -74,16 +72,11 @@ int main() {
             } else if (touch.type == TOUCH_UP) {
                 printf("Touch UP at: %d, %d\n", touch.x, touch.y);
                 
-                // ИГНОРИРУЕМ координаты UP события - используем последние валидные
-                // Не сбрасываем last_x/last_y сразу, чтобы квадрат оставался видимым
                 touch_active = 0;
-                
-                // Сбрасываем только после отрисовки в следующем кадре
             }
         }
 
         if (touch_active && last_x != -1 && last_y != -1) {
-            // Защита от краев экрана
             int square_x = last_x - 25;
             int square_y = last_y - 25;
             int square_size = 50;
@@ -98,14 +91,11 @@ int main() {
             printf("Drawing active square at: %d, %d\n", last_x, last_y);
             graphics_draw_rect(square_x, square_y, square_size, square_size, 0xFFFF0000);
         } else if (!touch_active) {
-            // После UP сбрасываем координаты в следующем кадре
             last_x = -1;
             last_y = -1;
         }
 
         graphics_swap_buffers();
-
-        usleep(10000);
     }
 
     input_cleanup();

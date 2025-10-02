@@ -165,7 +165,7 @@ int bb_make_directory (char *path, long mode, int flags)
 			}
 			/* Since the directory exists, don't attempt to change
 			 * permissions if it was the full target.  Note that
-			 * this is not an error condition. */
+			 * this is not an error conditon. */
 			if (!c) {
 				umask(mask);
 				return 0;
@@ -480,11 +480,11 @@ int main(int argc, char **argv)
 	}
 
 	if (optind >= argc || (rootdir=argv[optind])==NULL) {
-		bb_error_msg_and_die("root directory not specified");
+		bb_error_msg_and_die("root directory not speficied");
 	}
 
 	if (chdir(rootdir) != 0) {
-		bb_perror_msg_and_die("Could not chdir to %s", rootdir);
+		bb_perror_msg_and_die("Couldnt chdir to %s", rootdir);
 	}
 
 	umask(0);

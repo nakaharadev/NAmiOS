@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-GNURADIO_VERSION = 3.10.12.0
+GNURADIO_VERSION = 3.10.7.0
 GNURADIO_SITE = $(call github,gnuradio,gnuradio,v$(GNURADIO_VERSION))
 GNURADIO_LICENSE = GPL-3.0+
 GNURADIO_LICENSE_FILES = COPYING
@@ -112,13 +112,6 @@ else
 GNURADIO_CONF_OPTS += -DENABLE_GR_NETWORK=OFF
 endif
 
-ifeq ($(BR2_PACKAGE_GNURADIO_IIO),y)
-GNURADIO_CONF_OPTS += -DENABLE_GR_IIO=ON
-GNURADIO_DEPENDENCIES += libiio
-else
-GNURADIO_CONF_OPTS += -DENABLE_GR_IIO=OFF
-endif
-
 ifeq ($(BR2_PACKAGE_GNURADIO_PYTHON),y)
 GNURADIO_DEPENDENCIES += python3 python-pybind \
 	host-python-numpy host-python-packaging
@@ -143,13 +136,6 @@ GNURADIO_DEPENDENCIES += qt5base python-pyqt5 qwt
 GNURADIO_CONF_OPTS += -DENABLE_GR_QTGUI=ON
 else
 GNURADIO_CONF_OPTS += -DENABLE_GR_QTGUI=OFF
-endif
-
-ifeq ($(BR2_PACKAGE_GNURADIO_SOAPY),y)
-GNURADIO_DEPENDENCIES += soapy-sdr
-GNURADIO_CONF_OPTS += -DENABLE_GR_SOAPY=ON
-else
-GNURADIO_CONF_OPTS += -DENABLE_GR_SOAPY=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_GNURADIO_TRELLIS),y)

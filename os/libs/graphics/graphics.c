@@ -11,14 +11,12 @@
 static graphics_context_t g_ctx;
 
 int graphics_init(void) {
-    // Открываем фреймбуфер
     int fbfd = open("/dev/fb0", O_RDWR);
     if (fbfd == -1) {
         perror("Cannot open framebuffer device");
         return -1;
     }
 
-    // Получаем информацию о фреймбуфере
     struct fb_var_screeninfo vinfo;
     struct fb_fix_screeninfo finfo;
 
@@ -34,7 +32,6 @@ int graphics_init(void) {
         return -1;
     }
 
-    // Сохраняем параметры
     g_ctx.width = vinfo.xres;
     g_ctx.height = vinfo.yres;
     g_ctx.bpp = vinfo.bits_per_pixel;
@@ -44,7 +41,6 @@ int graphics_init(void) {
     printf("Framebuffer: %dx%d, %dbpp, pitch: %d\n", 
            g_ctx.width, g_ctx.height, g_ctx.bpp, g_ctx.pitch);
 
-    // Memory-map фреймбуфер
     g_ctx.framebuffer = mmap(0, g_ctx.screen_size, 
                             PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
     
@@ -61,7 +57,7 @@ int graphics_init(void) {
         return -1;
     }
 
-    close(fbfd); // Фреймбуфер больше не нужен, т.к. он отображен в память
+    close(fbfd);
     return 0;
 }
 
@@ -72,7 +68,6 @@ void graphics_cleanup(void) {
     }
 
     if (g_ctx.back_framebuffer) {
-        //free(g_ctx.back_framebuffer, g_ctx.screen_size);
         g_ctx.back_framebuffer = NULL;
     }
 }
@@ -103,7 +98,6 @@ void graphics_draw_pixel(int x, int y, uint32_t color) {
 void graphics_draw_rect(int x, int y, int w, int h, uint32_t color) {
     if (!g_ctx.back_framebuffer) return;
     
-    // Жесткое обрезание
     int start_x = (x < 0) ? 0 : x;
     int start_y = (y < 0) ? 0 : y;
     int end_x = (x + w > g_ctx.width) ? g_ctx.width : x + w;
@@ -111,7 +105,6 @@ void graphics_draw_rect(int x, int y, int w, int h, uint32_t color) {
     
     if (start_x >= end_x || start_y >= end_y) return;
     
-    // Безопасная отрисовка
     for (int i = start_y; i < end_y; i++) {
         for (int j = start_x; j < end_x; j++) {
             graphics_draw_pixel(j, i, color);
@@ -120,7 +113,6 @@ void graphics_draw_rect(int x, int y, int w, int h, uint32_t color) {
 }
 
 void graphics_draw_line(int x1, int y1, int x2, int y2, uint32_t color) {
-    // Простая реализация алгоритма Брезенхема
     int dx = abs(x2 - x1);
     int dy = abs(y2 - y1);
     int sx = (x1 < x2) ? 1 : -1;

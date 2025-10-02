@@ -17,14 +17,14 @@ Bare PC sample config
 
   $ make
 
-2. Write the image
+2. Write the pendrive
 
-  The build process will create a all-in-one image called disk.img in
+  The build process will create a pendrive image called sdcard.img in
   output/images.
 
   Write the image to a pendrive:
 
-  $ dd if=output/images/disk.img of=/dev/sdX; sync
+  $ dd if=output/images/disk.img of=/dev/sdc; sync
 
   Once it's done insert it into the target PC and boot.
 
@@ -42,10 +42,8 @@ Emulation in qemu (BIOS)
 1. Edit grub-bios.cfg
 
   Since the driver will show up in the virtual machine as /dev/vda,
-  change board/pc/grub-bios.cfg to use root=/dev/vda1 instead of
-  root=/dev/sda1. Then rebuild grub2 and the image:
-
-    make grub2-rebuild && make
+  change board/pc/grub-bios.cfg to use root=/dev/vda2 instead of
+  root=/dev/sda2. Then rebuild grub2 and the image.
 
 2. Run the emulation with:
 

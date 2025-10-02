@@ -3,4 +3,4 @@ config BR2_PACKAGE_EXPAT
 	help
 	  The Expat XML Parser.
 
-	  https://libexpat.github.io/
+	  http://expat.sourceforge.net

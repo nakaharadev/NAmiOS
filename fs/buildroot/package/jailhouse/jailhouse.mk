@@ -21,8 +21,7 @@ JAILHOUSE_MAKE_OPTS = \
 ifeq ($(BR2_PACKAGE_JAILHOUSE_HELPER_SCRIPTS),y)
 JAILHOUSE_DEPENDENCIES += \
 	host-python-mako \
-	host-python-setuptools \
-	python3
+	host-python-setuptools
 JAILHOUSE_MAKE_OPTS += \
 	HAS_PYTHON_MAKO="yes" \
 	PYTHON_PIP_USABLE="yes"
@@ -45,7 +44,7 @@ define JAILHOUSE_INSTALL_HELPER_SCRIPTS
 	$(HOST_DIR)/bin/python setup.py \
 		install --no-compile \
 		$(PKG_PYTHON_SETUPTOOLS_INSTALL_OPTS) \
-		--root=$(TARGET_DIR)
+		--root=$(TARGET_DIR))
 endef
 endif
 

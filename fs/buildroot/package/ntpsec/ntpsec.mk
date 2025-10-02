@@ -42,7 +42,6 @@ NTPSEC_DEPENDENCIES = \
 # --cross-compiler
 NTPSEC_CONF_OPTS = \
 	CC="$(HOSTCC)" \
-	CFLAGS="$(HOST_CFLAGS)" \
 	PYTHON_CONFIG="$(STAGING_DIR)/usr/bin/python3-config" \
 	--libdir=/usr/lib/python$(PYTHON3_VERSION_MAJOR)/site-packages/ntp \
 	--cross-compiler="$(TARGET_CC)" \
