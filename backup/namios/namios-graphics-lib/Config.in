@@ -1,5 +1,0 @@
-config BR2_PACKAGE_NAMIOS_GRAPHICS_LIB
-	bool "namios-graphics-lib"
-	depends on BR2_PACKAGE_LIBDRM
-	help
-	  NAmiOS Graphics Library - low-level graphics abstraction
