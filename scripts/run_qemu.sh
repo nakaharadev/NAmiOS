@@ -2,8 +2,8 @@ qemu-system-aarch64 \
     -machine virt,gic-version=3 \
     -cpu cortex-a57 \
     -m 2G \
-    -kernel $(pwd)/core/arch/arm64/boot/Image \
-    -drive file=$(pwd)/fs/buildroot/output/images/rootfs.ext4,if=none,format=raw,id=hd0 \
+    -kernel $(pwd)/kernel/arch/arm64/boot/Image \
+    -drive file=$(pwd)/buildroot/output/images/rootfs.ext4,if=none,format=raw,id=hd0 \
     -device virtio-blk-device,drive=hd0 \
     -netdev user,id=net0 \
     -device virtio-net-device,netdev=net0 \
@@ -11,7 +11,7 @@ qemu-system-aarch64 \
     -device virtio-gpu-pci,xres=1920,yres=1080 \
     -display gtk \
     -serial stdio \
-    -fsdev local,security_model=none,id=fsdev0,path=$(pwd)/core \
+    -fsdev local,security_model=none,id=fsdev0,path=$(pwd)/kernel \
     -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare \
     -device qemu-xhci,id=xhci \
     -device usb-tablet,bus=xhci.0 \

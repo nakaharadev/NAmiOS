@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "=== Restoring Graphics Kernel Configuration ==="
 
-cd ~/Desktop/Dev/NAmiOS/core
+cd ~/Desktop/Dev/NAmiOS/kernel
 
 # Базовый ARM64 config
 

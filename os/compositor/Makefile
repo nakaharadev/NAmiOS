@@ -1,8 +1,9 @@
-TARGET = namios-compositor
-SRCS = main.c
+TARGET = libcompositor.a
+SRCS = compositor.c
 OBJS = $(SRCS:.c=.o)
 
-CC ?= aarch64-linux-gnu-gcc
+CC ?= gcc
+AR ?= ar
 CFLAGS += -I.
 
 .PHONY: all clean
@@ -10,7 +11,7 @@ CFLAGS += -I.
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LDFLAGS)
+	$(AR) rcs $@ $(OBJS) $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
